@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/flutter_bloc/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:login/screans/form1_page.dart';
+import 'package:login/screans/calculator_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,8 +14,8 @@ class LoginPage extends StatefulWidget {
     final TextEditingController _passwordController = TextEditingController();
 
      // Suponiendo que estas sean tus credenciales "correctas"
-    final String _correctEmail = 'usuarioexample.com';
-    final String _correctPassword = '123456';
+    final String _correctEmail = 'user';
+    final String _correctPassword = '123';
 
   void _login() {
     final String email = _emailController.text;
@@ -28,7 +28,7 @@ class LoginPage extends StatefulWidget {
       );*/
       Navigator.pushReplacement( // Esto reemplaza la pantalla actual por la nueva
       context,
-      MaterialPageRoute(builder: (context) => UserDetailsFormPage()),
+      MaterialPageRoute(builder: (context) => CalculatorPage()),
     );
     } else {
       // Mostrar error si las credenciales son incorrectas
