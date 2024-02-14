@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:login/flutter_bloc/auth_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:login/screans/calculator_page.dart';
+//import 'package:login/flutter_bloc/auth_bloc.dart';
+//import 'package:flutter_bloc/flutter_bloc.dart';
+//import 'package:login/screans/calculator_page.dart';
+import 'package:login/screans/openenglish_page.dart';
+import 'package:login/screans/registeruser_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,7 +30,7 @@ class LoginPage extends StatefulWidget {
       );*/
       Navigator.pushReplacement( // Esto reemplaza la pantalla actual por la nueva
       context,
-      MaterialPageRoute(builder: (context) => CalculatorPage()),
+      MaterialPageRoute(builder: (context) => RegisterUser()),
     );
     } else {
       // Mostrar error si las credenciales son incorrectas
@@ -57,7 +59,7 @@ class LoginPage extends StatefulWidget {
           )
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),//define un relleno de 16 ud de pixeles entodas las direcciones
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
