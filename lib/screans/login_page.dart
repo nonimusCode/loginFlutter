@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/screans/home_page.dart';
 //import 'package:login/flutter_bloc/auth_bloc.dart';
 //import 'package:flutter_bloc/flutter_bloc.dart';
 //import 'package:login/screans/calculator_page.dart';
@@ -11,13 +12,14 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-  class _LoginPageState extends State<LoginPage>{
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
 
-     // Suponiendo que estas sean tus credenciales "correctas"
-    final String _correctEmail = 'user';
-    final String _correctPassword = '123';
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  // Suponiendo que estas sean tus credenciales "correctas"
+  final String _correctEmail = 'user';
+  final String _correctPassword = '123';
 
   void _login() {
     final String email = _emailController.text;
@@ -28,38 +30,40 @@ class LoginPage extends StatefulWidget {
       /* ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Bienvenido, $email')), 
       );*/
-      Navigator.pushReplacement( // Esto reemplaza la pantalla actual por la nueva
-      context,
-      MaterialPageRoute(builder: (context) => RegisterUser()),
-    );
+      Navigator.pushReplacement(
+        // Esto reemplaza la pantalla actual por la nueva
+        context,
+        MaterialPageRoute(builder: (context) => MenuHome()),
+      );
     } else {
       // Mostrar error si las credenciales son incorrectas
       /* ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Correo electrónico o contraseña incorrectos')),
       ); */
-       // Mostrar error si las credenciales son incorrectas
+      // Mostrar error si las credenciales son incorrectas
       ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Correo electrónico o contraseña incorrectos'),
-      ),
+        SnackBar(
+          content: Text('Correo electrónico o contraseña incorrectos'),
+        ),
       );
     }
   }
-  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Transform.translate(
-          offset: const Offset(0, 5),
-          child: const Text('Login',
-          textAlign: TextAlign.center,
-          ),
-          )
-      ),
+          centerTitle: true,
+          title: Transform.translate(
+            offset: const Offset(0, 5),
+            child: const Text(
+              'Login',
+              textAlign: TextAlign.center,
+            ),
+          )),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),//define un relleno de 16 ud de pixeles entodas las direcciones
+        padding: const EdgeInsets.all(
+            16.0), //define un relleno de 16 ud de pixeles entodas las direcciones
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -70,14 +74,14 @@ class LoginPage extends StatefulWidget {
               width: 100,
             ),
             const SizedBox(height: 20),
-             TextField(
+            TextField(
               controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Correo Electrónico',
               ),
             ),
             const SizedBox(height: 10),
-             TextField(
+            TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
                 labelText: 'Contraseña',
@@ -88,11 +92,9 @@ class LoginPage extends StatefulWidget {
               onPressed: _login,
               child: const Text('Iniciar sesión'),
             ),
-            ],
+          ],
         ),
-        ),
-  );
+      ),
+    );
   }
 }
-    
-  
