@@ -24,6 +24,7 @@ class _MenuHomeState extends State<MenuHome> {
             _buildProductCard('hamburguesa', 'assets/hamburguesa.png'),
             _buildProductCard('salchipapas', 'assets/salchipapas.jpg'),
             _buildProductCard('sushi', 'assets/sushi.jpg'),
+            
           ],
         ),
       ),
@@ -34,9 +35,22 @@ class _MenuHomeState extends State<MenuHome> {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: SizedBox(
-        width: 180,
-        height: 180,
-        child: Card(
+        width: 250,
+        height: 250,
+        //GestureDetector onlockPress, 
+        child: GestureDetector(
+          //onTap llama a una funcion (){} presiones o seleccion de la img
+          onTap: (){
+            //showDialog funcion para mostrar una ventana Modal o poPap  
+            showDialog(
+              context: context, 
+              //Dialog widget para personalizar o pasar contenido
+              builder: (_)=>Dialog(
+                child: _showDialogCostome(productName, srcPath)
+              )
+              );
+          },
+          child: Card(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,8 +69,30 @@ class _MenuHomeState extends State<MenuHome> {
               ),
             ],
           ),
+          ),
         ),
       ),
     );
   }
+
+   Widget _showDialogCostome(String productName, String srcPath) {
+    return Container( 
+      height: 300,
+      width: 400,
+
+    child: Column(
+      children: [
+        Image.asset(srcPath),
+        Center(
+          child: 
+          Padding(padding: const EdgeInsets.all(17.0),
+          child: 
+          Text(productName, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold) )
+          ),
+        )
+        
+      ],
+    ),
+    );
+   }
 }
