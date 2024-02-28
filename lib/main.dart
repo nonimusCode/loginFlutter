@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login/flutter_bloc/auth_bloc.dart';
 import 'package:login/screans/home_page.dart';
-import 'package:login/screans/login2_page.dart';
-import 'package:login/screans/login_page.dart';
-import 'package:login/screans/personal_page.dart';
 
 void main() {
   runApp(const MyApp());
