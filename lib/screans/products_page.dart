@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:login/screans/login2_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:login/screans/product_detail_page.dart';
 
@@ -32,11 +33,30 @@ class _ProductListPageState extends State<ProductListPage> {
     }
   }
 
+Future<void> logout()async{
+  SharedPreferences shared = await SharedPreferences.getInstance();
+  //tenemos shared una instancia de todo nuestro SharedPreference
+  shared.remove("login");
+   Navigator.pushReplacement(
+        // Esto reemplaza la pantalla actual por la nueva
+        context,
+        MaterialPageRoute(builder: (context) => StartPage()),
+      ); 
+}
+
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Product List'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: (){
+              logout();
+            }
+          )
+          ],
       ),
       body: ListView.builder(
         itemCount: products.length,

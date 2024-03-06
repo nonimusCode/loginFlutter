@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:login/screans/products_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -9,12 +13,46 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
 
-void _login() {
-   // Mostrar SnackBar con mensaje de bienvenida
-      ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Bienvenido')), 
+ final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  // Suponiendo que estas sean tus credenciales "correctas"
+  final String _correctEmail = 'user';
+  final String _correctPassword = '123';
+
+  void _login () async { 
+    final String email = _emailController.text;
+    final String password = _passwordController.text;
+
+    if (email == _correctEmail && password == _correctPassword) {
+      // Mostrar SnackBar con mensaje de bienvenida
+      /* ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Bienvenido, $email')), 
+      );*/
+      //final token = true;
+      SharedPreferences shared = await SharedPreferences.getInstance();
+      shared.setString("login", jsonEncode({}));
+      Navigator.pushReplacement(
+        // Esto reemplaza la pantalla actual por la nueva
+        context,
+        MaterialPageRoute(builder: (context) => ProductListPage()),
       );
+    } else {
+      // Mostrar error si las credenciales son incorrectas
+      /* ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Correo electrónico o contraseña incorrectos')),
+      ); */
+      // Mostrar error si las credenciales son incorrectas
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Correo electrónico o contraseña incorrectos'),
+        ),
+      );
+    }
   }
+
+
+
 
   @override
  
@@ -52,7 +90,7 @@ void _login() {
           ),
            SizedBox(height: 20),
            TextField(
-            //controller: _boxEmailController,
+            controller: _emailController,
             decoration: InputDecoration( 
               labelText: 'Email adress',
               border: OutlineInputBorder(
@@ -62,7 +100,7 @@ void _login() {
            ),
            SizedBox(height: 10),
            TextField(
-            //controller: _boxEmailController,
+            controller: _passwordController,
             decoration: InputDecoration( 
               labelText: 'Password',
               border: OutlineInputBorder(
