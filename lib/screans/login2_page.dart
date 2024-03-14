@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:login/screans/products_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +30,7 @@ class _StartPageState extends State<StartPage> {
       );*/
       //final token = true;
       SharedPreferences shared = await SharedPreferences.getInstance();
-      shared.setString("login", jsonEncode({}));
+      shared.setBool("login", true);
       Navigator.pushReplacement(
         // Esto reemplaza la pantalla actual por la nueva
         context,
@@ -65,7 +64,7 @@ class _StartPageState extends State<StartPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.network('https://github.com/images/modules/search/mona-love-2x.png',
-              fit: BoxFit.cover,
+              //fit: BoxFit.cover,
               height: 20.0,
               ),
               SizedBox(width: 10),
@@ -77,24 +76,28 @@ class _StartPageState extends State<StartPage> {
       ),
       
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(26.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Sing in to your account',
             style: TextStyle(
-              fontSize: 30.0,
+              fontSize: 15.0,
               fontWeight: FontWeight.bold,
               color: Colors.blue,
             ),
           ),
-           SizedBox(height: 20),
+          Image.network("https://c8.alamy.com/compes/rag3a9/colorido-icono-destinatarios-sobre-fondo-gris-rag3a9.jpg",
+          fit: BoxFit.cover,
+          //    height: 20.0,
+          ),
+           SizedBox(height: 40),
            TextField(
             controller: _emailController,
             decoration: InputDecoration( 
               labelText: 'Email adress',
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderRadius.circular(30.0),
               )
             ),
            ),
@@ -116,10 +119,10 @@ class _StartPageState extends State<StartPage> {
               color: Colors.white
             ),
             ),
-           style: ElevatedButton.styleFrom(
+            style: ElevatedButton.styleFrom(
             backgroundColor: Colors.orange, // Color de fondo del botón
             foregroundColor: Colors.white, // Color del texto (usado si el texto es un Widget directamente en child)
-            minimumSize: Size(double.infinity, 50), // Tamaño mínimo del botón, ancho infinito para que se expanda y altura 50
+            minimumSize: Size(double.infinity, 30), // Tamaño mínimo del botón, ancho infinito para que se expanda y altura 50
             shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0), // Bordes redondeados del botón
           ),
